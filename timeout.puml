@@ -1,0 +1,33 @@
+@startuml
+skinparam backgroundColor #EEEBDC
+skinparam handwritten true
+skinparam sequenceMessageAlign center
+autonumber
+
+skinparam sequence {
+ArrowColor DeepSkyBlue
+ActorBorderColor DeepSkyBlue
+LifeLineBorderColor blue
+LifeLineBackgroundColor #A9DCDF
+
+ParticipantBorderColor DeepSkyBlue
+ParticipantBackgroundColor DodgerBlue
+ParticipantFontName Impact
+ParticipantFontSize 17
+ParticipantFontColor #A9DCDF
+
+ActorBackgroundColor aqua
+ActorFontColor DeepSkyBlue
+ActorFontSize 17
+ActorFontName Aapex
+}
+
+server1 ->(40) server2++: SYN
+note left: Server1의 상태는 Open 상태로 변경\nTCB, SYN을 보낸다.
+note right: SYN을 받은 뒤, SYN+ASK를 보내준다.
+server2 ->(40) server1--: SYN+ASK
+server1 ->(40) server2++: ASK
+note left: SYN+ASK를 받은 뒤 ASK 를 보내준다.
+server2 ->(40) server1--: 요청에 대한 응답
+note right: ASK를 받은 뒤 연결이 정상적으로 완료 된것으로 보고\n응답데이터를 보내준다.
+@enduml
