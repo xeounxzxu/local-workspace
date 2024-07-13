@@ -23,11 +23,10 @@ ActorFontName Aapex
 }
 
 server1 ->(40) server2++: SYN
-note left: Server1의 상태는 Open 상태로 변경\nTCB, SYN을 보낸다.
-note right: SYN을 받은 뒤, SYN+ASK를 보내준다.
-server2 ->(40) server1--: SYN+ASK
-server1 ->(40) server2++: ASK
-note left: SYN+ASK를 받은 뒤 ASK 를 보내준다.
-server2 ->(40) server1--: 요청에 대한 응답
-note right: ASK를 받은 뒤 연결이 정상적으로 완료 된것으로 보고\n응답데이터를 보내준다.
+destroy server2
+server2 -->(40) server1--: SYN+ASK
+note right #FFAAAA : 3-way handshake가 끝나기 전에 네트워크 에러가 발생이 되면 \n ConnectionTimeout 이 발생이 된다.
+destroy server2
+server1 --->(40) server2++: ASK
+destroy server2
 @enduml

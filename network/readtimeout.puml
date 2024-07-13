@@ -1,0 +1,31 @@
+@startuml
+skinparam backgroundColor #EEEBDC
+skinparam handwritten true
+skinparam sequenceMessageAlign center
+autonumber
+
+skinparam sequence {
+ArrowColor DeepSkyBlue
+ActorBorderColor DeepSkyBlue
+LifeLineBorderColor blue
+LifeLineBackgroundColor #A9DCDF
+
+ParticipantBorderColor DeepSkyBlue
+ParticipantBackgroundColor DodgerBlue
+ParticipantFontName Impact
+ParticipantFontSize 17
+ParticipantFontColor #A9DCDF
+
+ActorBackgroundColor aqua
+ActorFontColor DeepSkyBlue
+ActorFontSize 17
+ActorFontName Aapex
+}
+
+server1 ->(40) server2++: SYN
+server2 ->(40) server1--: SYN+ASK
+server1 ->(40) server2++: ASK
+server2 -->(40) server1--: 요청에 대한 응답
+note right #FFAAAA : 요청을 받을때 에러가 발생이 되면 \n ReadTimeout 이 발생이 된다.
+destroy server2
+@enduml
